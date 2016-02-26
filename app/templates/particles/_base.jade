@@ -1,0 +1,26 @@
+include _variables
+doctype html
+html(lang='ru-RU')
+  head
+    meta(charset='UTF-8')
+    meta(name='description', content='')
+    meta(name='keywords', content='')
+    meta(name='author', content='')
+    meta(name='copyright', content='(c)')
+    meta(http-equiv='Reply-to', content='mail@gladkih.ru')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    //-Mobile Internet Explorer позволяет принудительно активировать технологию ClearType
+    //-для сглаживания шрифтов:
+    meta(http-equiv='cleartype', content='on')
+    //-Просим IE переключиться в последний режим:
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    //-Просим IE оформлять все в классическом стиле без учета текущей темы операционки:
+    meta(http-equiv='msthemecompatible', content='no')
+    include _social-meta
+    title
+      block title
+    block style
+  body
+    .main
+      block content
+  block script
