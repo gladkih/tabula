@@ -6,7 +6,6 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const copy = require('postcss-copy');
 const cssnext = require('postcss-cssnext');
-const messages = require('postcss-browser-reporter');
 const nested = require('postcss-nested');
 const colorFunction = require('postcss-color-function');
 const units = require('postcss-units');
@@ -35,9 +34,6 @@ const processor = [
   ifMedia(),
   autoprefixer({
     browsers: browser
-  }),
-  messages({
-    selector: 'body:before'
   })
 ];
 
