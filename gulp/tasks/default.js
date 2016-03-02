@@ -5,7 +5,7 @@ require('require-dir')('./', {recurse: false});
 gulp.task('default', gulp.series(
   gulp.parallel(
     gulp.series('styles:comb', 'styles'),
-    'jade'
+    'jade:single'
   ),
   gulp.parallel('server', 'watch', 'scripts')
 ));

@@ -11,5 +11,5 @@ gulp.task('watch', () => {
   watch(config.particles, gulp.series('jade', reload));
   watch(`${config.components}**/*.jade`, gulp.series('jade', reload));
   watch(`${config.style}*.css`, gulp.series('styles', reload));
-  watch(`${config.assets}**/*.*`, gulp.series('assets'));
+  watch(config.assets, gulp.series('assets'));
 });
