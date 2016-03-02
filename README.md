@@ -5,7 +5,7 @@
 ### Скопируйте репозиторий и перейдите в директорию проекта
 
 ```
-git clone git@github.com:gladkih/gulp-boilerplate.git project-name && cd project-name
+git clone git@github.com:gladkih/tabula.git project-name && cd project-name
 ```
 
 ### Установка модулей
