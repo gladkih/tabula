@@ -13,10 +13,11 @@ const colorFunction = require('postcss-color-function');
 const units = require('postcss-units');
 const media = require('gulp-group-css-media-queries');
 const csso = require('gulp-csso');
-const csscomb = require('gulp-csscomb');
+const csscomb = require('postcss-sorting');
 const sourcemaps = require('gulp-sourcemaps');
 const notify = require('gulp-notify');
 const combiner = require('stream-combiner2').obj;
+const debug = require('gulp-debug');
 
 const isDevelop = (process.env.NODE_ENV === 'develop');
 const processor = [
@@ -67,7 +68,12 @@ gulp.task('styles:comb', () => {
         cwd: config.style,
         nonull: true
       }),
-    csscomb(),
+    postcss([
+      csscomb({
+        'sort-order': 'yandex'
+      })
+    ]),
+    debug({title: '*csscomb*'}),
     gulp.dest(config.components)
   ).on('error', notify.onError(error => {
     errorLog(error);
