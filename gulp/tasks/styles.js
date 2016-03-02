@@ -1,7 +1,6 @@
 import config from '../config';
 import { browser } from '../../package.json';
 const gulp = require('gulp');
-const gutil = require('gulp-util');
 const gulpif = require('gulp-if');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
@@ -11,6 +10,7 @@ const messages = require('postcss-browser-reporter');
 const nested = require('postcss-nested');
 const colorFunction = require('postcss-color-function');
 const units = require('postcss-units');
+const ifMedia = require('postcss-if-media');
 const media = require('gulp-group-css-media-queries');
 const csso = require('gulp-csso');
 const csscomb = require('postcss-sorting');
@@ -32,6 +32,7 @@ const processor = [
   cssnext(),
   nested(),
   colorFunction(),
+  ifMedia(),
   autoprefixer({
     browsers: browser
   }),
@@ -50,7 +51,6 @@ gulp.task('styles', () => {
     postcss(processor, {to: `${config.styleDist}*.css`}),
     gulpif(!isDevelop, media()),
     gulpif(!isDevelop, csso()),
-    gulpif(gutil.env.csscomb, csscomb()),
     gulpif(isDevelop, sourcemaps.write()),
     gulp.dest(config.styleDist)
   ).on('error', notify.onError(error => {
