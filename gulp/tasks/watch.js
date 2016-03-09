@@ -10,6 +10,6 @@ gulp.task('watch', () => {
   watch(config.templates, gulp.series('jade:single', reload));
   watch(config.particles, gulp.series('jade', reload));
   watch(`${config.components}**/*.jade`, gulp.series('jade', reload));
-  watch(`${config.style}*.css`, gulp.series('styles', reload));
+  watch(`${config.style}*.css`, gulp.series('styles'));
   watch(config.assets, gulp.series('assets'));
 });

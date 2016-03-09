@@ -17,6 +17,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const notify = require('gulp-notify');
 const combiner = require('stream-combiner2').obj;
 const debug = require('gulp-debug');
+const browserSync = require('browser-sync');
 
 const isDevelop = (process.env.NODE_ENV === 'develop');
 const processor = [
@@ -27,7 +28,7 @@ const processor = [
     template: 'static/i/[path]/[name].[ext]',
     keepRelativePath: false
   }),
-  units(),
+  units({fallback: false}),
   cssnext(),
   nested(),
   colorFunction(),
@@ -48,7 +49,8 @@ gulp.task('styles', () => {
     gulpif(!isDevelop, media()),
     gulpif(!isDevelop, csso()),
     gulpif(isDevelop, sourcemaps.write()),
-    gulp.dest(config.styleDist)
+    gulp.dest(config.styleDist),
+    browserSync.stream()
   ).on('error', notify.onError(error => {
     return {
       title: 'Style',
